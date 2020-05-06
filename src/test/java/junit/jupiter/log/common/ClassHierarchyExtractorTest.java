@@ -5,13 +5,14 @@ import org.junit.jupiter.api.Test;
 import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class LogUtilsTest {
+class ClassHierarchyExtractorTest {
+    private final ClassHierarchyExtractor classHierarchyExtractor = new ClassHierarchyExtractor();
+
     @Test
     void extractParentsWithCurrentClass_for_object_class() {
         // call
-        Collection<Class<?>> classes = LogUtils.extractParentsWithCurrentClass(Object.class);
+        Collection<Class<?>> classes = classHierarchyExtractor.apply(Object.class);
 
         assertThat(classes).isEmpty();
     }
@@ -19,7 +20,7 @@ class LogUtilsTest {
     @Test
     void extractParentsWithCurrentClass_with_parents() {
         // call
-        Collection<Class<?>> classes = LogUtils.extractParentsWithCurrentClass(C3.class);
+        Collection<Class<?>> classes = classHierarchyExtractor.apply(C3.class);
 
         assertThat(classes)
                 .hasSize(5)
@@ -29,7 +30,7 @@ class LogUtilsTest {
     @Test
     void extractParentsWithCurrentClass_without_parents() {
         // call
-        Collection<Class<?>> classes = LogUtils.extractParentsWithCurrentClass(C.class);
+        Collection<Class<?>> classes = classHierarchyExtractor.apply(C.class);
 
         assertThat(classes)
                 .hasSize(1)

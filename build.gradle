@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'junit.jupiter.log'
-version '0.0.1'
+version '1.0.0'
 
 sourceCompatibility = 1.8
 
@@ -16,21 +16,16 @@ test {
 }
 
 dependencies {
-    compile group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
-    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
-    compile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.6.1'
+    compile group: "ch.qos.logback", name: "logback-core", version: "${logback_version}"
+    compile group: "ch.qos.logback", name: "logback-classic", version: "${logback_version}"
+    compile group: "org.junit.jupiter", name: "junit-jupiter-api", version: "${jupiter_verion}"
 
-    compileOnly 'org.projectlombok:lombok:1.18.12'
-    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    compileOnly group: "org.projectlombok", name: "lombok", version: "${lombok_version}"
+    annotationProcessor group: "org.projectlombok", name: "lombok", version: "${lombok_version}"
 
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.6.1'
-    testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.3.3'
-    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.15.0'
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.6.1'
-    testCompile group: 'nl.jqno.equalsverifier', name: 'equalsverifier', version: '3.1.13'
-
-    testCompileOnly 'org.projectlombok:lombok:1.18.12'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+    testCompile group: "org.junit.jupiter", name: "junit-jupiter-api", version: "${jupiter_verion}"
+    testCompile group: "org.mockito", name: "mockito-junit-jupiter", version: "${mockito_version}"
+    testCompile group: "org.assertj", name: "assertj-core", version: "${assertj_version}"
+    testCompile group: "org.junit.jupiter", name: "junit-jupiter-engine", version: "${jupiter_verion}"
+    testCompile group: "nl.jqno.equalsverifier", name: "equalsverifier", version: "${equalsverifier_version}"
 }
-
-

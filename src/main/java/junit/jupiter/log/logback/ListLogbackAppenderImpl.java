@@ -13,13 +13,13 @@ import java.util.function.Function;
  */
 @RequiredArgsConstructor
 public final class ListLogbackAppenderImpl extends UnsynchronizedAppenderBase<ILoggingEvent> implements ListLogbackAppender {
-    private final Function<ILoggingEvent, LogRow> converterILoggingEventToLogRow;
+    private final Function<ILoggingEvent, LogRow> logbackEventToLogbackRowMapper;
     private final List<LogRow> logRows;
 
     @Override
     public void append(ILoggingEvent e) {
         if (isStarted()) {
-            LogRow logRow = converterILoggingEventToLogRow.apply(e);
+            LogRow logRow = logbackEventToLogbackRowMapper.apply(e);
             logRows.add(logRow);
         }
     }

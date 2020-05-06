@@ -1,7 +1,6 @@
 package junit.jupiter.log.logback;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import ch.qos.logback.classic.spi.LoggingEvent;
 import junit.jupiter.log.common.LogRow;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,7 +20,7 @@ class ListLogbackAppenderImplTest {
     private ListLogbackAppenderImpl appender;
 
     @Mock
-    private Function<ILoggingEvent, LogRow> converterILoggingEventToLogRow;
+    private Function<ILoggingEvent, LogRow> logbackEventToLogbackRowMapper;
     @Mock
     private List<LogRow> logRows;
 
@@ -29,7 +28,7 @@ class ListLogbackAppenderImplTest {
     void started_appender_append() {
         ILoggingEvent event = mock(ILoggingEvent.class);
         LogRow logRow = mock(LogRow.class);
-        when(converterILoggingEventToLogRow.apply(eq(event)))
+        when(logbackEventToLogbackRowMapper.apply(eq(event)))
                 .thenReturn(logRow);
 
         appender.start();
@@ -46,7 +45,7 @@ class ListLogbackAppenderImplTest {
         // call
         appender.append(event);
 
-        verify(converterILoggingEventToLogRow, times(0)).apply(any());
+        verify(logbackEventToLogbackRowMapper, times(0)).apply(any());
         verify(logRows, times(0)).add(any());
     }
 
